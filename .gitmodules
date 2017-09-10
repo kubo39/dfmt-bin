@@ -1,0 +1,3 @@
+[submodule "dfmt"]
+	path = dfmt
+	url = git://github.com/dlang-community/dfmt.git

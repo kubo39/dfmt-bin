@@ -1,0 +1,34 @@
+dist: trusty
+language: d
+services: docker
+sudo: required
+
+env:
+  global:
+  - PACKAGE_NAME=dfmt
+  - TARGET=linux-amd64
+
+script:
+  - true
+
+before_deploy:
+  - sh ci/before_deploy.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: kUYtuyzUZ9oIjDgLrDNPZ62fCwRX3uL3qBcN0bFJ6Gtyvfzhxv1v3b1QZYcmHt86qKqx6yWdGbV8dvCd7MNWWJsPXHOjntfkTtgzzp3VRXQhgdMqETnt8ZoOBJ4ZfHrVOY6Qlkdiq7C3d2Gqg7ROIP++Z568Glv1pHVpW+esFF3MC0bhOFHnyTYWVLqCF8RKbMldcLgw8VV/VCSu70yfTkRLzkF89mb7i8ZD2rfcuKMijQ1wRnRMSW28JdlNcZWfVnoNCCkNGb4uDZJJc6WZhAjbfCHJRFjIWGnjAAnAVWI4BKyaYva+RzIy3/yNPkccUj2xhZzHH7NzV6eCtZI9KRJLmD5Cz1QvvYT8yCiPCqUTSuGljKDcWbl3CRJds3TIeGwhJjKY9kxBt1PYE6RIXjK6uQ8U8sfQq6IIMbLLWcvYIEDN30SZhZRZ0ydCKRAtfefPFzBWev3yJzZ2nAO2NCl+57uq1ciK8n5xSE6bfIOFhTWWWqXPI4FEVa+xDu4jQMglU1jaBh3XSwPnQlUYFL9Rhbbcw44JW1C8RX8rVzj6aCUJyUFFaAGuQ/SdLRG5tLa/IEIPtXslANYewWIrLxR2o8i04gHEKgOhV3gsj+u2Z/5nwbIxyPCGa4eAd9ao1mhtum+SYZjUdqNeKB+qmC5ajOw3yFbk3P6vLrJmQMc=
+  file_glob: true
+  file: $PACKAGE_NAME-$TRAVIS_TAG-$TARGET.*
+  on:
+    tags: true
+  skip_cleanup: true
+
+branches:
+  only:
+    - master
+
+notifications:
+  email:
+    on_success: never
+
