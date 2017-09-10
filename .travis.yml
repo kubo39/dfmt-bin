@@ -21,7 +21,7 @@ deploy:
   file_glob: true
   file: $PACKAGE_NAME-$TRAVIS_TAG-$TARGET.*
   on:
-    tags: true
+    branch: master
   skip_cleanup: true
 
 branches:
